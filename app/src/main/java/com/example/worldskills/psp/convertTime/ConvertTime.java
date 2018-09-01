@@ -61,11 +61,11 @@ public class ConvertTime {
         return hour+":"+minutes+":"+seconds;
     }
 
-    public int cambiarMillis(String dateStart){
-        timeStart1=(dateStart).split(":");
-        int horas1=((Integer.valueOf(timeStart[0]))*(60*60000));
-        int min1=((Integer.valueOf(timeStart[1]))*(60000));
-        int seg1=((Integer.valueOf(timeStart[2]))*(1000));
+    public int cambiarMillis(String dateStart1){
+        timeStart1=(dateStart1).split(":");
+        int horas1=((Integer.valueOf(timeStart1[0]))*(60*60000));
+        int min1=((Integer.valueOf(timeStart1[1]))*(60000));
+        int seg1=((Integer.valueOf(timeStart1[2]))*(1000));
 
         return horas1+min1+seg1;
     }

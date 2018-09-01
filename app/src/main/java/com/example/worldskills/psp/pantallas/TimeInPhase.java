@@ -88,7 +88,7 @@ public class TimeInPhase extends AppCompatActivity {
                 registro.put("tiempoEstimado",estimado.getText().toString());
                 ConvertTime convertTime=new ConvertTime();
                 //crud.modificar(TimeInPhase.this,"tb_project",id,registro);
-                planPorcentaje.setText(convertTime.cambiarMillis(finalTiempoPlan)*100/Integer.valueOf(estimado.getText().toString()));
+                planPorcentaje.setText(String.valueOf(convertTime.cambiarMillis(finalTiempoPlan)*100/Integer.valueOf(estimado.getText().toString())*60000));
             }
         });
 
