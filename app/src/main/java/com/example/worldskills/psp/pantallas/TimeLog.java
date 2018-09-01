@@ -98,7 +98,7 @@ public class TimeLog extends AppCompatActivity {
     private void registro() {
         commentsBd = descripcion.getText().toString();
 
-        if (phaseBd.trim().equals("none") || startBd.trim().equals("") || stopBD.trim().equals("") || deltaBd.trim().equals("")){
+        if (phaseBd.trim().equals("none") || etstart.getText().toString().trim().equals("") || etstop.getText().toString().trim().equals("") || delta.getText().toString().trim().equals("")){
             Toast.makeText(getApplicationContext(),"Algún campo requerido esta vacio",Toast.LENGTH_SHORT).show();
         }else {
             AlertDialog.Builder alert = new AlertDialog.Builder(TimeLog.this);
