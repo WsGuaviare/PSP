@@ -1,22 +1,16 @@
 package com.example.worldskills.psp.Entidades;
 
 public class TimeLogVo {
-    String phase,start,interruption,stop,comments,idProject;
+    String phase,startDays,StartMinutes,interruption,stopDays,stopMinutes,comments,idProject;
 
-    public TimeLogVo(String phase, String start, String interruption, String stop, String comments,String idProject) {
+    public TimeLogVo(String phase, String startDays, String startMinutes, String interruption, String stopDays, String stopMinutes, String comments, String idProject) {
         this.phase = phase;
-        this.start = start;
+        this.startDays = startDays;
+        StartMinutes = startMinutes;
         this.interruption = interruption;
-        this.stop = stop;
+        this.stopDays = stopDays;
+        this.stopMinutes = stopMinutes;
         this.comments = comments;
-        this.idProject=idProject;
-    }
-
-    public String getIdProject() {
-        return idProject;
-    }
-
-    public void setIdProject(String idProject) {
         this.idProject = idProject;
     }
 
@@ -28,12 +22,20 @@ public class TimeLogVo {
         this.phase = phase;
     }
 
-    public String getStart() {
-        return start;
+    public String getStartDays() {
+        return startDays;
     }
 
-    public void setStart(String start) {
-        this.start = start;
+    public void setStartDays(String startDays) {
+        this.startDays = startDays;
+    }
+
+    public String getStartMinutes() {
+        return StartMinutes;
+    }
+
+    public void setStartMinutes(String startMinutes) {
+        StartMinutes = startMinutes;
     }
 
     public String getInterruption() {
@@ -44,12 +46,20 @@ public class TimeLogVo {
         this.interruption = interruption;
     }
 
-    public String getStop() {
-        return stop;
+    public String getStopDays() {
+        return stopDays;
     }
 
-    public void setStop(String stop) {
-        this.stop = stop;
+    public void setStopDays(String stopDays) {
+        this.stopDays = stopDays;
+    }
+
+    public String getStopMinutes() {
+        return stopMinutes;
+    }
+
+    public void setStopMinutes(String stopMinutes) {
+        this.stopMinutes = stopMinutes;
     }
 
     public String getComments() {
@@ -58,5 +68,13 @@ public class TimeLogVo {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getIdProject() {
+        return idProject;
+    }
+
+    public void setIdProject(String idProject) {
+        this.idProject = idProject;
     }
 }

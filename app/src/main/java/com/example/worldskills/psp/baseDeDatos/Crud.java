@@ -33,7 +33,7 @@ public class Crud extends SQLiteOpenHelper {
         db.execSQL("drop table if exists tb_project");
         db.execSQL("drop table if exists tb_timeLog");
         db.execSQL("drop table if exists tb_defectLog");
-        db.execSQL("create table tb_project(idProject integer primary key autoincrement,nombre text,tiempoEstimado int)");
+        db.execSQL("create table tb_project(idProject integer primary key autoincrement,nombre text,tiempoEstimado integer)");
         db.execSQL("create table tb_timeLog(idTime integer primary key autoincrement,phase text,startDays text,startMinutes text,interruption integer,stopDays text,stopMinutes text,Comments text,idProject integer)");
         db.execSQL("create table tb_defectLog(idDefect integer primary key autoincrement,dateDays text,dateMinutes text,type text,phaseInject text,phaseRemove text,fixTime text,defectDescription text,idTime integer)");
     }
@@ -57,13 +57,13 @@ public class Crud extends SQLiteOpenHelper {
         }
         cursor.close();
     }
-    public void consultarTimeLog(Context context,ArrayList<TimeLogVo> listaTimeLog){
+    public void consultarTimeLog(Context context,String id,ArrayList<TimeLogVo> listaTimeLog){
         this.listaTimeLog=listaTimeLog;
         Crud crud=new Crud(context,"psp",null,1);
         SQLiteDatabase db=crud.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select * from tb_timeLog",null);
+        Cursor cursor=db.rawQuery("select * from tb_timeLog ",null);
         while (cursor.moveToNext()){
-            listaTimeLog.add(new TimeLogVo(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6)));
+            listaTimeLog.add(new TimeLogVo(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8)));
         }
         cursor.close();
 
@@ -74,7 +74,7 @@ public class Crud extends SQLiteOpenHelper {
         SQLiteDatabase db=crud.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from tb_defectLog",null);
         while (cursor.moveToNext()){
-            listaDefectLog.add(new DefectsLogVo(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7)));
+            listaDefectLog.add(new DefectsLogVo(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8)));
         }
         cursor.close();
     }

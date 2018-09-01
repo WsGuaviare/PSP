@@ -47,6 +47,7 @@ public class ProyectosRealizados extends AppCompatActivity {
                 registro.put("tiempoEstimado","0");
                 crud.insertar(ProyectosRealizados.this,"tb_project",registro);
                 adaptador();
+                projectName.setText("");
             }
         });
     }

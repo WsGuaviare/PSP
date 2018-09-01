@@ -1,5 +1,6 @@
 package com.example.worldskills.psp.pantallas;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.os.SystemClock;
 import android.sax.StartElementListener;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.worldskills.psp.R;
+import com.example.worldskills.psp.baseDeDatos.Crud;
 import com.example.worldskills.psp.convertTime.ConvertTime;
 
 import java.text.DateFormat;
@@ -32,15 +34,19 @@ public class TimeLog extends AppCompatActivity {
     String phaseBd;//tomamos el valor del spinner
     String startBd;//tomamos la hora en la que se inicio
     String stopBD;//tomamos la hora en la que finalizo
+    String startDias;
+    String stopDias;
     String interrupcionesBd;
     String deltaBd;
     String commentsBd;
+    String projectId;
     ConvertTime convertir = new ConvertTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_log);
+        projectId=getIntent().getStringExtra("projectId");
         phase = findViewById(R.id.phase);
         etstart = findViewById(R.id.etstart);
         etstop = findViewById(R.id.etstop);
@@ -109,7 +115,14 @@ public class TimeLog extends AppCompatActivity {
                     .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //insertar en la bd
+                            Crud crud=new Crud(TimeLog.this,"psp",null,1);
+                            ContentValues registro=new ContentValues();
+                            Toast.makeText(getApplicationContext(),projectId,Toast.LENGTH_SHORT).show();
+                            registro.put("phase",phaseBd);registro.put("startDays",startDias);registro.put("startMinutes",startBd);registro.put("interruption",interrupcionesBd);registro.put("stopDays",stopDias);registro.put("stopMinutes",stopBD);registro.put("comments",commentsBd);registro.put("idProject",projectId);
+                            crud.insertar(TimeLog.this,"tb_timeLog",registro);
+                            etstart.setText("");etstop.setText("");interrupciones.setText("");delta.setText("");descripcion.setText("");
+                            startDias="";startBd="";stopBD="";stopDias="";interrupcionesBd="";deltaBd="";commentsBd="";
+                            start.setEnabled(true);stop.setEnabled(true);
                         }
                     })
                     .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -132,6 +145,7 @@ public class TimeLog extends AppCompatActivity {
             String dias = days.format(date.getTime());
             String tiempo = horas.format(date.getTime());
             stopBD = tiempo;
+            stopDias=dias;
             interrupcionesBd = interrupciones.getText().toString();
             int interrupcionesDato = Integer.parseInt(interrupciones.getText().toString());
             etstop.setText(dias+" "+tiempo);
@@ -148,6 +162,7 @@ public class TimeLog extends AppCompatActivity {
         String dias = days.format(date.getTime());
         String tiempo = horas.format(date.getTime());
         startBd = tiempo;
+        startDias=dias;
         etstart.setText(dias+" "+tiempo);
         start.setEnabled(false);
     }

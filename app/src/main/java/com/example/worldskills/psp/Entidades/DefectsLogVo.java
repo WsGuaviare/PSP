@@ -1,32 +1,33 @@
 package com.example.worldskills.psp.Entidades;
 
 public class DefectsLogVo {
-    String date,type,phaseInjected,phaseRemoved,fixTime,defectDescription,idTime;
+    String dateDays,dateMinutes,type,phaseInjected,phaseRemoved,fixTime,defectDescription,idTime;
 
-    public DefectsLogVo(String date, String type, String phaseInjected, String phaseRemoved, String fixTime, String defectDescription,String idTime) {
-        this.date = date;
+    public DefectsLogVo(String dateDays, String dateMinutes, String type, String phaseInjected, String phaseRemoved, String fixTime, String defectDescription, String idTime) {
+        this.dateDays = dateDays;
+        this.dateMinutes = dateMinutes;
         this.type = type;
         this.phaseInjected = phaseInjected;
         this.phaseRemoved = phaseRemoved;
         this.fixTime = fixTime;
         this.defectDescription = defectDescription;
-        this.idTime=idTime;
-    }
-
-    public String getIdTime() {
-        return idTime;
-    }
-
-    public void setIdTime(String idTime) {
         this.idTime = idTime;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateDays() {
+        return dateDays;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateDays(String dateDays) {
+        this.dateDays = dateDays;
+    }
+
+    public String getDateMinutes() {
+        return dateMinutes;
+    }
+
+    public void setDateMinutes(String dateMinutes) {
+        this.dateMinutes = dateMinutes;
     }
 
     public String getType() {
@@ -67,5 +68,13 @@ public class DefectsLogVo {
 
     public void setDefectDescription(String defectDescription) {
         this.defectDescription = defectDescription;
+    }
+
+    public String getIdTime() {
+        return idTime;
+    }
+
+    public void setIdTime(String idTime) {
+        this.idTime = idTime;
     }
 }
