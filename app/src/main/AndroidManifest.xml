@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProyectosRealizados">
+        </activity>
+        <activity android:name=".pantallas.TimeLog">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pantallas.TimeLog" />
         <activity android:name=".pantallas.DefectLog" />
         <activity android:name=".pantallas.ProjectPlanSummary" />
         <activity android:name=".pantallas.TimeInPhase" />
