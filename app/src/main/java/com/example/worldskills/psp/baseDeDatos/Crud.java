@@ -61,7 +61,7 @@ public class Crud extends SQLiteOpenHelper {
         this.listaTimeLog=listaTimeLog;
         Crud crud=new Crud(context,"psp",null,1);
         SQLiteDatabase db=crud.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select * from tb_timeLog ",null);
+        Cursor cursor=db.rawQuery("select * from tb_timeLog where idProject="+id,null);
         while (cursor.moveToNext()){
             listaTimeLog.add(new TimeLogVo(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8)));
         }

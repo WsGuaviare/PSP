@@ -42,52 +42,55 @@ public class TimeInPhase extends AppCompatActivity {
         utPorcentaje=findViewById(R.id.porcentajeUt);
         pmPorcentaje=findViewById(R.id.porcentajePm);
         guardar=findViewById(R.id.tiempoEstimadoId);
+        Crud crud=new Crud(TimeInPhase.this,"psp",null,1);
+        crud.consultarTimeLog(this, id, lista);
+        String tiempoPlan="00:00:00",tiempoDld="00:00:00",tiempoCode="00:00:00",tiempoCompile="00:00:00",tiempoUt="00:00:00",tiempoPm="00:00:00";
+        for(int i=0;i<lista.size();i++){
+            if(lista.get(i).getPhase().equals("PLAN")){
+                ConvertTime convertTime=new ConvertTime();
+                String resultado=convertTime.cambiarTiempo(lista.get(i).getStartMinutes(),lista.get(i).getStopMinutes(),Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoPlan=convertTime.sumarTime(tiempoPlan,resultado,0);
+            }
+            else if(lista.get(i).getPhase().equals("DLD")) {
+                ConvertTime convertTime = new ConvertTime();
+                String resultado = convertTime.cambiarTiempo(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoDld = convertTime.sumarTime(tiempoDld, resultado, 0);
+            }
+            else if(lista.get(i).getPhase().equals("CODE")) {
+                ConvertTime convertTime = new ConvertTime();
+                String resultado = convertTime.cambiarTiempo(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoCode = convertTime.sumarTime(tiempoCode, resultado, 0);
+            }
+            else if(lista.get(i).getPhase().equals("COMPILE")) {
+                ConvertTime convertTime = new ConvertTime();
+                String resultado = convertTime.cambiarTiempo(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoCompile = convertTime.sumarTime(tiempoCompile, resultado, 0);
+            }
+            else if(lista.get(i).getPhase().equals("UT")) {
+                ConvertTime convertTime = new ConvertTime();
+                String resultado = convertTime.cambiarTiempo(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoUt = convertTime.sumarTime(tiempoUt, resultado, 0);
+            }
+            else if(lista.get(i).getPhase().equals("PM")) {
+                ConvertTime convertTime = new ConvertTime();
+                String resultado = convertTime.cambiarTiempo(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
+                tiempoPm = convertTime.sumarTime(tiempoPm, resultado, 0);
+            }
+        }
+        planTime.setText(tiempoPlan);dldTime.setText(tiempoDld);codeTime.setText(tiempoCode);compileTime.setText(tiempoCompile);utTime.setText(tiempoUt);pmTime.setText(tiempoPm);
+
+        final String finalTiempoPlan = tiempoPlan;
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Crud crud=new Crud(TimeInPhase.this,"psp",null,1);
                 ContentValues registro=new ContentValues();
                 registro.put("tiempoEstimado",estimado.getText().toString());
-                crud.modificar(TimeInPhase.this,"tb_project",id,registro);
+                ConvertTime convertTime=new ConvertTime();
+                //crud.modificar(TimeInPhase.this,"tb_project",id,registro);
+                planPorcentaje.setText(convertTime.cambiarMillis(finalTiempoPlan)*100/Integer.valueOf(estimado.getText().toString()));
             }
         });
-        Crud crud=new Crud(TimeInPhase.this,"psp",null,1);
-        crud.consultarTimeLog(this, id, lista);
-        String tiempoPlan="00:00:00",tiempoDld="00:00:00",tiempoCode="00:00:00",tiempoCompile="00:00:00",tiempoUt="00:00:00",tiempoPm="00:00:00";
-        for(int i=0;i<lista.size();i++){
-            Toast.makeText(getApplicationContext(),lista.get(i).getIdProject(),Toast.LENGTH_SHORT).show();
-            if(lista.get(i).getPhase().equals("PLAN")){
-                ConvertTime convertTime=new ConvertTime();
-                String resultado=convertTime.sumarTime(lista.get(i).getStartMinutes(),lista.get(i).getStopMinutes(),Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoPlan=convertTime.sumarTime(tiempoPlan,resultado,0);
-            }
-            else if(lista.get(i).getPhase().equals("DLD")) {
-                ConvertTime convertTime = new ConvertTime();
-                String resultado = convertTime.sumarTime(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoDld = convertTime.sumarTime(tiempoDld, resultado, 0);
-            }
-            else if(lista.get(i).getPhase().equals("CODE")) {
-                ConvertTime convertTime = new ConvertTime();
-                String resultado = convertTime.sumarTime(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoCode = convertTime.sumarTime(tiempoCode, resultado, 0);
-            }
-            else if(lista.get(i).getPhase().equals("COMPILE")) {
-                ConvertTime convertTime = new ConvertTime();
-                String resultado = convertTime.sumarTime(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoCompile = convertTime.sumarTime(tiempoCompile, resultado, 0);
-            }
-            else if(lista.get(i).getPhase().equals("UT")) {
-                ConvertTime convertTime = new ConvertTime();
-                String resultado = convertTime.sumarTime(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoUt = convertTime.sumarTime(tiempoUt, resultado, 0);
-            }
-            else if(lista.get(i).getPhase().equals("PM")) {
-                ConvertTime convertTime = new ConvertTime();
-                String resultado = convertTime.sumarTime(lista.get(i).getStartMinutes(), lista.get(i).getStopMinutes(), Integer.valueOf(lista.get(i).getInterruption()));
-                tiempoPm = convertTime.sumarTime(tiempoPm, resultado, 0);
-            }
-        }
-        planTime.setText(tiempoPlan);dldTime.setText(tiempoDld);codeTime.setText(tiempoCode);compileTime.setText(tiempoCompile);utTime.setText(tiempoUt);pmTime.setText(tiempoPm);
 
     }
 }

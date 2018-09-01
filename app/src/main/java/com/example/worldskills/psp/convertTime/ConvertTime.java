@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ConvertTime {
-    String [] timeStart,timeEnd;
+    String [] timeStart,timeEnd,timeStart1;
     DateFormat dateFormat=new SimpleDateFormat("HH:mm:ss");
     public String cambiarTiempo(String dateStart,String dateEnd,int interruption){
         timeStart=(dateStart).split(":");
+        timeStart1=(dateStart).split(":");
         timeEnd=(dateEnd).split(":");
         int horas1=((Integer.valueOf(timeStart[0]))*(60*60000));
         int horas2=((Integer.valueOf(timeEnd[0]))*(60*60000));
@@ -58,5 +59,14 @@ public class ConvertTime {
 
 
         return hour+":"+minutes+":"+seconds;
+    }
+
+    public int cambiarMillis(String dateStart){
+        timeStart1=(dateStart).split(":");
+        int horas1=((Integer.valueOf(timeStart[0]))*(60*60000));
+        int min1=((Integer.valueOf(timeStart[1]))*(60000));
+        int seg1=((Integer.valueOf(timeStart[2]))*(1000));
+
+        return horas1+min1+seg1;
     }
 }

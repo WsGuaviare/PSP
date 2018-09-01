@@ -61,7 +61,7 @@ public class ProyectosRealizados extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(ProyectosRealizados.this,Menu.class);
-                intent.putExtra("projectId",((recycler.getChildAdapterPosition(v))+1));
+                intent.putExtra("projectId",String.valueOf((recycler.getChildAdapterPosition(v))+1));
                 Toast.makeText(ProyectosRealizados.this,String.valueOf((recycler.getChildAdapterPosition(v))+1),Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }

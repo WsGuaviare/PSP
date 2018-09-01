@@ -117,7 +117,7 @@ public class TimeLog extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             Crud crud=new Crud(TimeLog.this,"psp",null,1);
                             ContentValues registro=new ContentValues();
-                            Toast.makeText(getApplicationContext(),projectId,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),String.valueOf(startBd)+"   "+String.valueOf(stopBD),Toast.LENGTH_SHORT).show();
                             registro.put("phase",phaseBd);registro.put("startDays",startDias);registro.put("startMinutes",startBd);registro.put("interruption",interrupcionesBd);registro.put("stopDays",stopDias);registro.put("stopMinutes",stopBD);registro.put("comments",commentsBd);registro.put("idProject",projectId);
                             crud.insertar(TimeLog.this,"tb_timeLog",registro);
                             etstart.setText("");etstop.setText("");interrupciones.setText("");delta.setText("");descripcion.setText("");
