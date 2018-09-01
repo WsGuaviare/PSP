@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.worldskills.psp.R;
+import com.example.worldskills.psp.convertTime.ConvertTime;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,8 +22,11 @@ public class TimeLog extends AppCompatActivity {
     Spinner phase;
     EditText etstart, etstop,interrupciones,delta,descripcion;
     Button start,stop,registrar;
-    DateFormat horas = new SimpleDateFormat("HH:mm:ss");
-    DateFormat days = new SimpleDateFormat("yyyy/MM/dd");
+    DateFormat horas = new SimpleDateFormat("HH:mm:ss");//formato para traer la hora
+    DateFormat days = new SimpleDateFormat("yyyy/MM/dd");//formato para traer la fecha
+    String horaStart;//tomamos la hora en la que se inicio
+    String horaStop;//tomamos la hora en la que finalizo
+    ConvertTime convertir = new ConvertTime();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,14 @@ public class TimeLog extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                horaStart(etstart);
+                asignarStart();
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asignarStop();
             }
         });
 
@@ -51,12 +62,23 @@ public class TimeLog extends AppCompatActivity {
         phase.setAdapter(lista);
     }
 
-    private void horaStart(EditText mostrar) {
-
+    private void asignarStop() {
         Date date=new Date();
         String dias = days.format(date.getTime());
-        String tiemmpo = horas.format(date.getTime());
-        mostrar.setText(dias+" "+tiemmpo);
+        String tiempo = horas.format(date.getTime());
+        horaStop = tiempo;
+        int interrupcionesDato = Integer.parseInt(interrupciones.getText().toString());
+        etstop.setText(dias+" "+tiempo);
+        String resultado = convertir.cambiarTiempo(horaStart,horaStop,interrupcionesDato);
+        delta.setText(resultado);
+    }
 
+
+    private void asignarStart() {
+        Date date=new Date();
+        String dias = days.format(date.getTime());
+        String tiempo = horas.format(date.getTime());
+        horaStart = tiempo;
+        etstart.setText(dias+" "+tiempo);
     }
 }
