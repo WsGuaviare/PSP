@@ -1,5 +1,7 @@
 package com.example.worldskills.psp.convertTime;
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class ConvertTime {
         int resultado=-1;
         int millis1=horas1+min1+seg1;
         int millis2=horas2+min2+seg2;
+        Log.d("verificar",String.valueOf(millis2)+"  "+String.valueOf(millis1));
         if(millis2<millis1 && (millis2-millis1)>(interruption*60000)) {
             resultado = (millis2 - millis1) - (interruption * 60000);
         }else return "Algun dato no cumple las condiciones";
