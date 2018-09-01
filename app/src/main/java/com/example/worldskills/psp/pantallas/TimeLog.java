@@ -22,6 +22,7 @@ public class TimeLog extends AppCompatActivity {
     EditText etstart, etstop,interrupciones,delta,descripcion;
     Button start,stop,registrar;
     DateFormat horas = new SimpleDateFormat("HH:mm:ss");
+    DateFormat days = new SimpleDateFormat("yyyy/MM/dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,11 @@ public class TimeLog extends AppCompatActivity {
     }
 
     private void horaStart() {
+<<<<<<< HEAD
+=======
+        Date date=new Date();
+        etstart.setText(days.format(date.getTime())+" "+horas.format(date.getTime()));
+>>>>>>> 12a0fe21ac5c19691a5d30bc9c806b6aefc1ad2f
 
     }
 }
