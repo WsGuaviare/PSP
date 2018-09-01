@@ -29,6 +29,7 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.listView
     @Override
     public void onBindViewHolder(@NonNull AdapterProject.listViewHolder listViewHolder, int i) {
         listViewHolder.project.setText(lista.get(i));
+        onClick();
     }
 
     @Override
