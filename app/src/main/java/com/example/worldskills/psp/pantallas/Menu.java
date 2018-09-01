@@ -13,11 +13,13 @@ import com.example.worldskills.psp.R;
 public class Menu extends AppCompatActivity {
     Button timeLog,defectLog,projectSummary;
     ImageView volver;
+    String projectName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        projectName=getIntent().getStringExtra("projectId");
         timeLog=findViewById(R.id.timeLogId);
         defectLog=findViewById(R.id.defectLogId);
         projectSummary=findViewById(R.id.projectSummaryId);
@@ -32,6 +34,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Menu.this, TimeLog.class);
+                intent.putExtra("projectId",projectName);
                 startActivity(intent);
             }
         });
@@ -39,6 +42,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Menu.this, DefectLog.class);
+                intent.putExtra("projectId",projectName);
                 startActivity(intent);
             }
         });
@@ -46,6 +50,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Menu.this, ProjectPlanSummary.class);
+                intent.putExtra("projectId",projectName);
                 startActivity(intent);
             }
         });

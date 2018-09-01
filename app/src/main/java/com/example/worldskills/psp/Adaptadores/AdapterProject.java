@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.worldskills.psp.Entidades.ProjectVo;
 import com.example.worldskills.psp.R;
 
 import java.util.ArrayList;
 
 public class AdapterProject extends RecyclerView.Adapter<AdapterProject.listViewHolder> implements View.OnClickListener{
-    ArrayList<String> lista;
+    ArrayList<ProjectVo> lista;
     private View.OnClickListener listener;
 
-    public AdapterProject(ArrayList<String> lista) {
+    public AdapterProject(ArrayList<ProjectVo> lista) {
         this.lista = lista;
     }
 
@@ -23,13 +24,13 @@ public class AdapterProject extends RecyclerView.Adapter<AdapterProject.listView
     @Override
     public AdapterProject.listViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list,null,false);
+        view.setOnClickListener(this);
         return new listViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterProject.listViewHolder listViewHolder, int i) {
-        listViewHolder.project.setText(lista.get(i));
-        onClick();
+        listViewHolder.project.setText(lista.get(i).getNombre());
     }
 
     @Override

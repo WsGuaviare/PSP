@@ -7,16 +7,42 @@
     android:orientation="vertical"
     tools:context=".ProyectosRealizados">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/contenedor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="1014dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/contenedor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/crearProject"
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="create a new project" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/projectNameId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Project Name"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/crearProject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="create a new project" />
+
+    </LinearLayout>
+
 </LinearLayout>
