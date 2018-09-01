@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type">
+        <item>Documentation</item>
+        <item>Syntax</item>
+        <item>Build</item>
+        <item>Package</item>
+        <item>Assigment</item>
+        <item>Interface</item>
+        <item>Checking</item>
+        <item>Data</item>
+        <item>Function</item>
+        <item>System</item>
+        <item>Evironment</item>
+    </string-array>
+</resources>

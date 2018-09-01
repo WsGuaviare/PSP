@@ -12,8 +12,8 @@ public class Cronometro {
     //iniciamos el chronometro
     public void iniciarChronometro(Chronometer chronometro){
         if (running){
-            chronometro.setBase(SystemClock.elapsedRealtime() - detenerse);
             chronometro.start();
+            chronometro.setBase(SystemClock.elapsedRealtime() - detenerse);
             running = true;
         }
 
@@ -21,9 +21,11 @@ public class Cronometro {
 
     //pausamos el chronometro
     public void pausarChronometro(Chronometer chronometro){
-        chronometro.stop();
-        detenerse = SystemClock.elapsedRealtime() - chronometro.getBase();
-        running = false;
+        if (!running){
+            chronometro.stop();
+            detenerse = SystemClock.elapsedRealtime() - chronometro.getBase();
+            running = false;
+        }
     }
 
     //reiniciamos el Chronometro
