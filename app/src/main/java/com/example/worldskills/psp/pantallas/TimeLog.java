@@ -41,7 +41,7 @@ public class TimeLog extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                horaStart();
+                horaStart(etstart);
             }
         });
 
@@ -51,9 +51,12 @@ public class TimeLog extends AppCompatActivity {
         phase.setAdapter(lista);
     }
 
-    private void horaStart() {
+    private void horaStart(EditText mostrar) {
+
         Date date=new Date();
-        etstart.setText(days.format(date.getTime())+" "+horas.format(date.getTime()));
+        String dias = days.format(date.getTime());
+        String tiemmpo = horas.format(date.getTime());
+        mostrar.setText(dias+" "+tiemmpo);
 
     }
 }
