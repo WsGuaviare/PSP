@@ -51,7 +51,6 @@ public class TimeLog extends AppCompatActivity {
     }
 
     private void horaStart() {
-        
 
     }
 }
