@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".pantallas.TimeLog" />
+        <activity android:name=".pantallas.DefectLog" />
+        <activity android:name=".pantallas.ProjectPlanSummary" />
+        <activity android:name=".pantallas.TimeInPhase" />
+        <activity android:name=".pantallas.DefectsInjectedInPhase" />
+        <activity android:name=".pantallas.DefectsRemovedInPhase"></activity>
     </application>
 
 </manifest>
