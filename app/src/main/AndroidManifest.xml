@@ -11,18 +11,19 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ProyectosRealizados">
         </activity>
-        <activity android:name=".pantallas.TimeLog">
+        <activity android:name=".pantallas.TimeLog"></activity>
+        <activity android:name=".pantallas.DefectLog" />
+        <activity android:name=".pantallas.ProjectPlanSummary" />
+        <activity android:name=".pantallas.TimeInPhase" />
+        <activity android:name=".pantallas.DefectsInjectedInPhase" />
+        <activity android:name=".pantallas.DefectsRemovedInPhase" />
+        <activity android:name=".pantallas.Menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pantallas.DefectLog" />
-        <activity android:name=".pantallas.ProjectPlanSummary" />
-        <activity android:name=".pantallas.TimeInPhase" />
-        <activity android:name=".pantallas.DefectsInjectedInPhase" />
-        <activity android:name=".pantallas.DefectsRemovedInPhase"></activity>
     </application>
 
 </manifest>
