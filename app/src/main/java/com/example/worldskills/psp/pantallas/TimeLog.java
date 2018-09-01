@@ -4,10 +4,12 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.worldskills.psp.R;
 import com.example.worldskills.psp.convertTime.ConvertTime;
@@ -24,8 +26,9 @@ public class TimeLog extends AppCompatActivity {
     Button start,stop,registrar;
     DateFormat horas = new SimpleDateFormat("HH:mm:ss");//formato para traer la hora
     DateFormat days = new SimpleDateFormat("yyyy/MM/dd");//formato para traer la fecha
-    String horaStart;//tomamos la hora en la que se inicio
-    String horaStop;//tomamos la hora en la que finalizo
+    String phaseBd;
+    String startBd;//tomamos la hora en la que se inicio
+    String stopBD;//tomamos la hora en la que finalizo
     ConvertTime convertir = new ConvertTime();
 
     @Override
@@ -60,16 +63,35 @@ public class TimeLog extends AppCompatActivity {
         //creamos el adapdador para el spinner
         ArrayAdapter<CharSequence> lista = ArrayAdapter.createFromResource(this,R.array.phase_array,android.R.layout.simple_spinner_item);
         phase.setAdapter(lista);
+
+        phase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                phaseBd = String.valueOf(parent.getItemAtPosition(position));
+                Toast.makeText(getApplicationContext(),""+phaseBd,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
     }
 
     private void asignarStop() {
         Date date=new Date();
         String dias = days.format(date.getTime());
         String tiempo = horas.format(date.getTime());
-        horaStop = tiempo;
+        stopBD = tiempo;
         int interrupcionesDato = Integer.parseInt(interrupciones.getText().toString());
         etstop.setText(dias+" "+tiempo);
-        String resultado = convertir.cambiarTiempo(horaStart,horaStop,interrupcionesDato);
+        String resultado = convertir.cambiarTiempo(startBd,stopBD,interrupcionesDato);
         delta.setText(resultado);
     }
 
@@ -78,7 +100,7 @@ public class TimeLog extends AppCompatActivity {
         Date date=new Date();
         String dias = days.format(date.getTime());
         String tiempo = horas.format(date.getTime());
-        horaStart = tiempo;
+        startBd = tiempo;
         etstart.setText(dias+" "+tiempo);
     }
 }
