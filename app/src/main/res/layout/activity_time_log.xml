@@ -110,7 +110,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
